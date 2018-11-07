@@ -6,7 +6,7 @@ class Database:
         self.db = db
 
     def __enter__(self):
-        self.connection = sqlite3.connect(db)
+        self.connection = sqlite3.connect(self.db)
         self.cursor = self.connection.cursor()
         return self
 
