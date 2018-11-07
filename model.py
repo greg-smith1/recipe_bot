@@ -11,4 +11,7 @@ class Database:
         return self
 
     def __exit__(self, exc_type, exc_value, trace):
-        pass
+        if not exc_type:
+            self.connection.commit()
+        self.cursor.close()
+        self.connection.close()
