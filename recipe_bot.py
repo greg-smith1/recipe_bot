@@ -27,8 +27,15 @@ async def on_message(message):
         with model.Database(DB) as rdb:
             #TODO get length of Database
             #TODO get random number to snag recipe index
-            sql = """SQL HERE"""
-            rdb.cursor.execute(sql)
-        await client.send_message(message.channel, 'hi')
+            recipe = rdb.select_recipe(random_num)
+        await client.send_message(message.channel, recipe.title)
 
+    elif message.content.startswith('!recipe'):
+        name = message.content.split()[1:].join()
+        with model.Database(DB) as rdb:
+            recipe = rdb.select_recipe(name)
+            if recipe:
+                await client.send_message(message.channel, recipe.title)
+            else:
+                await client.send_message(message.channel, "Couldn't find that one")
 
