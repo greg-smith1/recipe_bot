@@ -51,4 +51,3 @@ class Recipe:
         for item, measurement in self.ingredients:
             print(item, measurement)
 
-
