@@ -6,7 +6,6 @@ import model
 import discord
 
 DISCORD_BOT_TOKEN = os.environ.get('RECIPE_BOT_TOKEN')
-DB = 'recipes.db'
 client = discord.Client()
 
 @client.event
@@ -24,16 +23,16 @@ async def on_message(message):
           message.author.id, type(message.author.id), type(message.author))
     
     if message.content.startswith('!random'):
-        with model.Database(DB) as rdb:
+        with model.Apiwrapper() as wrapper:
             #TODO get length of Database
             #TODO get random number to snag recipe index
-            recipe = rdb.select_recipe(random_num)
+            recipe = wrapper.select_recipe(random_num)
         await client.send_message(message.channel, recipe.title)
 
     elif message.content.startswith('!recipe'):
         name = message.content.split()[1:].join()
-        with model.Database(DB) as rdb:
-            recipe = rdb.select_recipe(name)
+        with model.Apiwrapper() as wrapper:
+            recipe = wrapper.select_recipe(name)
             if recipe:
                 await client.send_message(message.channel, recipe.title)
             else:

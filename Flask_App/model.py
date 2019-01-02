@@ -34,7 +34,7 @@ class Recipe:
         ingredients - dict, containing item:measurement pairs
         steps - list of strings, containing each step in the recipe
             default None, for easy one-pot/one-step recipes
-        link - source link of recipe if obtained online
+        link - source of recipe if obtained online (None for original recipes)
         """
         self.title = title
         self.cook_time = cook_time
