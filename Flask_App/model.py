@@ -16,13 +16,11 @@ class Database:
         self.cursor.close()
         self.connection.close()
 
-def select_recipe(self, index):
-    with Database as rdb:
+    def select_recipe(self, index):
         sql = """TODO SQL HERE"""
-        rdb.cursor.execute(sql)
-        result = rdb.cursor.fetchone()
-        recipe = Recipe(result[0], result[1], result[2], result[3])
-        return recipe
+        self.cursor.execute(sql)
+        result = self.cursor.fetchone()
+        return result
 
 class Recipe:
 
