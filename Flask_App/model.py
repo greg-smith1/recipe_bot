@@ -41,13 +41,13 @@ class Recipe:
         self.ingredients = ingredients
         self.steps = steps
         self.link = link
+        self.dictionary = {'title':self.title, 'time':self.cook_time, 
+        'ingredients':self.ingredients, 'steps':self.steps, 'link':self.link}
 
     def print_steps(self):
         for i in range(len(self.steps)):
             print(i+1, self.steps[i])
 
     def __str__(self):
-        print(self.title.title() + ':')
-        for item, measurement in self.ingredients:
-            print(item, measurement)
+        print(self.dictionary)
 
