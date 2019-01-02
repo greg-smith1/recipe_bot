@@ -23,7 +23,7 @@ async def on_message(message):
           message.author.id, type(message.author.id), type(message.author))
     
     if message.content.startswith('!random'):
-        with model.Apiwrapper() as wrapper:
+        with Apiwrapper() as wrapper:
             #TODO get length of Database
             #TODO get random number to snag recipe index
             recipe = wrapper.select_recipe(random_num)
@@ -31,7 +31,7 @@ async def on_message(message):
 
     elif message.content.startswith('!recipe'):
         name = message.content.split()[1:].join()
-        with model.Apiwrapper() as wrapper:
+        with Apiwrapper() as wrapper:
             recipe = wrapper.select_recipe(name)
             if recipe:
                 await client.send_message(message.channel, recipe.title)
